@@ -119,3 +119,22 @@ body{
 .sidebar{
     background-color: #1f2833 !important;
 }
+
+.ps-broken{
+    top:60px !important;
+    left: 0 !important;
+}
+.ps-collapsed{
+    position: absolute;
+    left:-80px !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .dashboard-container {
+      width: 100%;
+      margin: 0.5rem;
+    }
+    .brandLogo{
+        width: 100%;
+    }
+  }
