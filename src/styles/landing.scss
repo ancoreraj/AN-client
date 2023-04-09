@@ -1,0 +1,111 @@
+.landing {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/ancorenotes-29b02.appspot.com/o/static_files%2Flanding_page_bg.jpg?alt=media&token=fd5170ba-7f6a-4d8e-9a20-a2e47953843d );
+    background-color: rgba(0, 0, 0, .35);
+    background-blend-mode: darken;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh;
+
+    .navbarText {
+        color: #26323f !important;
+        font-weight: 600;
+    }
+
+    .nav__logo {
+        width: 21%;
+
+    }
+
+    .spacing {
+        margin-right: 0.25rem !important;
+    }
+
+    .go{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navPos {
+        justify-content: flex-end;
+    }
+
+    .logo__a {}
+
+    .lp__body {
+        padding: 50px;
+        text-align: center;
+    }
+
+    .lp__body h4 {
+        margin-top: 90px;
+        color: #26323f;
+    }
+
+    .lp__body h1 {
+        margin-top: 45px;
+        color: #26323f;
+        /* color: #293e40; */
+    }
+
+
+    .lp__bodyLogin {
+        margin-top: 75px;
+        display: flex;
+        justify-content: center;
+        /* color: white !important; */
+    }
+
+    .lp__bodyLogin input {
+        width: 500px;
+    }
+
+    /* .lp__bodyLogin a{
+        color: white;
+    } */
+    .lp__bodyLogin p {
+        margin: 0px;
+    }
+
+    @media only screen and (max-width:900px) {
+        .lp__body {
+            padding: 0px;
+        }
+
+        .lp__body h4 {
+            margin-top: 70px;
+        }
+
+        .lp__bodyLogin {
+            margin-top: 50px;
+        }
+
+        .lp__bodyLogin input {
+            width: 300px;
+        }
+
+        .nav__logo {
+            width: 90%;
+        }
+
+        .logo__a {
+            width: 70%;
+
+        }
+
+
+    }
+
+
+
+    @media only screen and (max-width:1200px) {
+        .col-md-3 {
+            width: 80% !important;
+        }
+    }
+}
