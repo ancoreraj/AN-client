@@ -1,10 +1,9 @@
-import Navbar from "../../component/NavBar";
-import NavBar from "../../component/NavBar";
-import SideNavbar from "../../component/SideNavbar";
+import NavBar from "../../../component/NavBar";
+import SideNavbar from "../../../component/SideNavbar";
 export default function Dashboard() {
     return (
         <>
-            <Navbar/>
+            <NavBar/>
             <div className="dashboard">
             <SideNavbar/>
             <div className="card dashboard-container box-shadow-1">
