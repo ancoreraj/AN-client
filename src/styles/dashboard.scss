@@ -99,12 +99,23 @@ body{
 .css-honxw6,.css-jn69v9{
     color: #FF7940;
 }
-
-.sidebar{
+.ps-submenu-content{
     background-color: #1f2833 !important;
 }
-.navdropdown > button{
-    background-color: white !important;
-    border: none;
-    color: #1f2833;
+.ps-menu-button:hover {
+    background-color: #1f2833 !important;
+}
+.liStyles > a > span {
+    font-size: 0.875rem;
+}
+.liStyles > a > .ps-menu-icon {
+    margin-right: 0;
+    font-weight: 500;
+}
+.liStyles > a {
+    height: 40px !important;
+    padding-left: 20px !important;
+}
+.sidebar{
+    background-color: #1f2833 !important;
 }

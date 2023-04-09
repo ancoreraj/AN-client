@@ -9,10 +9,35 @@ const SideNavbar = () => {
             </MenuItem>
             <SubMenu label="1st Year" icon=<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FF7940" class="bi bi-circle" viewBox="0 0 16 16">
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-            </svg>></SubMenu>             
+            </svg>>
+            <MenuItem className='liStyles' backgroundColor='#1f2833' label="Dashboard" href='/a' icon=<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="black" class="bi bi-circle-fill" viewBox="0 0 8 8">
+            <circle cx="3" cy="3" r="3"/></svg>>All Branches</MenuItem>
+            </SubMenu>             
             <SubMenu label="2nd Year" icon=<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FF7940" class="bi bi-circle" viewBox="0 0 16 16">
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-            </svg>></SubMenu>             
+            </svg>>
+            <MenuItem className='liStyles' backgroundColor='#1f2833' label="Dashboard" href='/a' icon=<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="black" class="bi bi-circle-fill" viewBox="0 0 8 8">
+            <circle cx="3" cy="3" r="3"/></svg>>BioTech</MenuItem>
+            <MenuItem className='liStyles' backgroundColor='#1f2833' label="Dashboard" href='/a' icon=<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="black" class="bi bi-circle-fill" viewBox="0 0 8 8">
+            <circle cx="3" cy="3" r="3"/></svg>>Civil</MenuItem>
+            <MenuItem className='liStyles' backgroundColor='#1f2833' label="Dashboard" href='/a' icon=<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="black" class="bi bi-circle-fill" viewBox="0 0 8 8">
+            <circle cx="3" cy="3" r="3"/></svg>>Computer  Science</MenuItem>
+            <MenuItem className='liStyles' backgroundColor='#1f2833' label="Dashboard" href='/a' icon=<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="black" class="bi bi-circle-fill" viewBox="0 0 8 8">
+            <circle cx="3" cy="3" r="3"/></svg>>Chemical</MenuItem>
+            <MenuItem className='liStyles' backgroundColor='#1f2833' label="Dashboard" href='/a' icon=<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="black" class="bi bi-circle-fill" viewBox="0 0 8 8">
+            <circle cx="3" cy="3" r="3"/></svg>>Electrical</MenuItem>
+            <MenuItem className='liStyles' backgroundColor='#1f2833' label="Dashboard" href='/a' icon=<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="black" class="bi bi-circle-fill" viewBox="0 0 8 8">
+            <circle cx="3" cy="3" r="3"/></svg>>Electronics and Communication</MenuItem>
+            <MenuItem className='liStyles' backgroundColor='#1f2833' label="Dashboard" href='/a' icon=<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="black" class="bi bi-circle-fill" viewBox="0 0 8 8">
+            <circle cx="3" cy="3" r="3"/></svg>>Mechanical</MenuItem>
+            <MenuItem className='liStyles' backgroundColor='#1f2833' label="Dashboard" href='/a' icon=<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="black" class="bi bi-circle-fill" viewBox="0 0 8 8">
+            <circle cx="3" cy="3" r="3"/></svg>>Production</MenuItem>
+            <MenuItem className='liStyles' backgroundColor='#1f2833' label="Dashboard" href='/a' icon=<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" fill="black" class="bi bi-circle-fill" viewBox="0 0 8 8">
+            <circle cx="3" cy="3" r="3"/></svg>>Electronics and Instrumentation</MenuItem>
+            
+            
+            
+            </SubMenu>             
             <SubMenu label="3rd Year" icon=<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FF7940" class="bi bi-circle" viewBox="0 0 16 16">
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
             </svg>></SubMenu> 
