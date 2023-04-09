@@ -1,3 +1,110 @@
-.gaurav {
-    background-color: red;
+body{
+    background-color: #dfe5eb;
+}
+.dashboard{
+    display: flex;
+}
+.dashboard-container{
+    width: 70%;
+    background-color: #dfe5eb;
+    border: none;
+    border-radius: 0.25rem;
+    margin: 2rem;
+    .welcomeMessage{
+        padding: 10px;
+        text-align: center;
+        background-color: #26323f;
+        font-weight: 500;
+        line-height: 1.2;
+        color: white  ;
+        h1{
+            font-size: 42px;
+        }
+        p{
+            font-weight: 400;
+            font-size: 16px;
+        }
+
+    }
+}
+.topContributors{
+    margin-top: 30px;
+    text-align: center;
+    td{
+        text-align: left;
+    }
+    .link{
+        color: black;
+        text-decoration: underline;
+    }
+}
+.uploadNotesForm{
+    overflow: hidden;
+    margin-top: 30px;
+    .inputStretch{
+        margin-bottom:1rem !important ;
+    }
+    label{
+        font-size: 0.875rem;
+        line-height: 1.4rem;
+        vertical-align: top;
+        margin-bottom: 0.5rem;
+    }
+    .uploadButton{
+        margin: 1rem 0;
+    }
+}
+
+
+
+.marginLeft1{
+    margin-left: 0.5rem;
+}
+.marginRight1{
+    margin-right: 0.5rem;
+}
+.header{
+    background-color: #26323f;
+    color: white;
+    padding: 8px;
+    border-radius: 4px 4px 2px 2px;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.footer{
+    text-align: center !important;
+    margin-top: 1rem;
+    margin-bottom: -1.5rem;
+}
+
+.customNavbar{
+    height: 60px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:0 20px;
+}
+.ps-menu-label{
+    color: white;
+}
+.css-16jesut >.ps-menu-button:hover {
+    background-color: #1f2833 !important;
+}
+.css-16jkw2k >.ps-menu-button:hover {
+    background-color: #1f2833 !important;
+}
+.css-honxw6,.css-jn69v9{
+    color: #FF7940;
+}
+
+.sidebar{
+    background-color: #1f2833 !important;
+}
+.navdropdown > button{
+    background-color: white !important;
+    border: none;
+    color: #1f2833;
 }
