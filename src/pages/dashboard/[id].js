@@ -2,6 +2,7 @@ import NavBar from "../../../component/NavBar";
 import SideNavbar from "../../../component/SideNavbar";
 
 const Files = () => {
+    
     return ( 
         <>
         <NavBar/>

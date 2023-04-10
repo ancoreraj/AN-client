@@ -1,10 +1,10 @@
 import { Sidebar, Menu, MenuItem, SubMenu, MenuOutlinedIcon,useProSidebar } from 'react-pro-sidebar';
 
 
-
-
 const SideNavbar = () => {
+
     const {broken} = useProSidebar();
+    
     if(broken)
     return (
         <Sidebar backgroundColor='#1f2833' breakPoint='md' width='100%' className='minHeight' defaultCollapsed="true">

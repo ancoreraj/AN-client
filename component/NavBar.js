@@ -2,7 +2,9 @@ import {useProSidebar} from 'react-pro-sidebar'
 
 
 const Navbar = () => {
+
     const { collapseSidebar,broken } = useProSidebar();
+
     if(broken)
     return(
         <nav class="customNavbar sticky-top">
