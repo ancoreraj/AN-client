@@ -15,9 +15,9 @@ export default function App({ Component, pageProps }) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></link>
       </Head>
       <ProSidebarProvider>
-        <GoogleOAuthProvider clientId="717961017252-98974gkfqnr7c747rrodc7t2t1k5j1hh.apps.googleusercontent.com">
-          <Component {...pageProps} />
-        </GoogleOAuthProvider>
+      <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
+        <Component {...pageProps} />
+      </GoogleOAuthProvider>
       </ProSidebarProvider>
     </>
   )

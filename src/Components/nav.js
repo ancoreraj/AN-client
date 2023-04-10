@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 const NavBar = () => {
@@ -8,7 +10,7 @@ const NavBar = () => {
     return (
         <nav class="navbar navbar-expand-sm navbar-light bg-transparent">
             <div class="container">
-                <a class="navbar-brand navbarText logo__a" href="/"><img class="nav__logo" src="/images/o2.png" alt="logo" /></a>
+                <Link class="navbar-brand navbarText logo__a" href="/"><Image class="nav__logo" src="https://firebasestorage.googleapis.com/v0/b/ancorenotes-29b02.appspot.com/o/static_files%2FmainLogo.png?alt=media&token=f898a9ff-4079-4827-b6f1-f3e180a805cf" alt="logo" width={200} height={40}/></Link>
                 <button onClick={handleToggle} class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
                     data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
                     aria-label="Toggle navigation">
