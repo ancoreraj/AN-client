@@ -1,5 +1,5 @@
-import NavBar from "../../../component/NavBar";
-import SideNavbar from "../../../component/SideNavbar";
+import NavBar from "../../Components/NavBar";
+import SideNavbar from "../../Components/SideNavbar";
 
 const Files = () => {
     
