@@ -1,11 +1,12 @@
-import Navbar from "../../component/NavBar";
-import SideNavbar from "../../component/SideNavbar";
+import NavBar from "../../../component/NavBar";
+import SideNavbar from "../../../component/SideNavbar";
 
 
 const Dashboard = () => {
+    
     return (
         <>
-            <Navbar/>
+            <NavBar/>
             <div className="dashboard">
             <SideNavbar/>
             <div className="card dashboard-container box-shadow-1">
