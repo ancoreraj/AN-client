@@ -7,16 +7,11 @@ import { useEffect, useState } from "react"
 
 export default function Home() {
   const router = useRouter();
-  const [toggle, setToggle] = useState(true);
-  const handleToggle = () => {
-    setToggle(!toggle)
-  }
   const handleGoogleLoginSuccess = async (tokenResponse) => {
 
     const accessToken = tokenResponse.access_token;
     const loginData = await GoogleLogin(accessToken)
     if (loginData) {
-
       router.push("/dashboard")
     }
     else {
