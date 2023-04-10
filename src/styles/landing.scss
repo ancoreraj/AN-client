@@ -11,21 +11,28 @@
     background-size: cover;
     height: 100vh;
 
+    .college-height{
+        height: 400px;
+    }
+
     .navbarText {
         color: #26323f !important;
         font-weight: 600;
     }
 
-    .nav__logo {
-        width: 21%;
-
+    .collegeSelect {
+        width: 50%;
     }
+
+    // .nav__logo {
+    //     width: 21%;
+    // }
 
     .spacing {
         margin-right: 0.25rem !important;
     }
 
-    .go{
+    .go {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -76,7 +83,9 @@
         .lp__body {
             padding: 0px;
         }
-
+        .collegeSelect {
+            width: 100%;
+        }
         .lp__body h4 {
             margin-top: 70px;
         }

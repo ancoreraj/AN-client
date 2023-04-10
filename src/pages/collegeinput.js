@@ -1,20 +1,23 @@
 import NavBar from "@/Components/nav";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const CollegeInput = () => {
+    const router = useRouter();
 
     const collegeSelect = (college) => {
-        if (college=="what") {
+        if (college == "what") {
             alert("Please Select a College")
         }
-        else{
-
+        else {
+            router.push("/dashboard")
         }
     }
 
     return (
         <div className="landing">
             <header >
-                <NavBar/>
+                <NavBar />
 
                 <div class="container">
                     <div class="lp__body">
@@ -29,17 +32,43 @@ const CollegeInput = () => {
                                 collegeSelect(e.target.college.value);
                             }}>
                                 <div class="form-group m-1 go">
-                                    <select class="form-control" name="college" required >
-                                        <option value="what">Whats your College?</option>
+                                    <select onfocus='this.size=10' onblur='this.size=1'
+                                        onchange='this.size=1; this.blur();' class="form-control collegeSelect" name="college" required >
+
+                                        <option disabled value="what" selected hidden>Whats your College?</option>
                                         <option value="NIT Agartala">NIT Agartala</option>
                                         <option value="NIT Allahabad">NIT Allahabad</option>
                                         <option value="NIT Bhopal">NIT Bhopal</option>
                                         <option value="NIT Nagpur">NIT Nagpur</option>
                                         <option value="NIT Durgapur">NIT Durgapur</option>
                                         <option value="NIT Hamirpur">NIT Hamirpur</option>
+                                        <option value="NIT Jaipur">NIT Jaipur</option>
+                                        {/* <option value="NIT Jalandhar">NIT Jalandhar</option>
+                                        <option value="NIT Jamshedpur">NIT Jamshedpur</option>
+                                        <option value="NIT Kurukshetra">NIT Kurukshetra</option>
+                                        <option value="NIT Calicut">NIT Calicut</option>
+                                        <option value="NIT Rourkela">NIT Rourkela</option>
+                                        <option value="NIT Silchar">NIT Silchar</option>
+                                        <option value="NIT Karnataka">NIT Karnataka</option>
+                                        <option value="NIT Warangal">NIT Warangal</option>
+                                        <option value="NIT Surat">NIT Surat</option>
+                                        <option value="NIT Tiruchirappalli">NIT Tiruchirappalli</option>
+                                        <option value="NIT Srinagar">NIT Srinagar</option>
+                                        <option value="NIT Raipur">NIT Raipur</option>
+                                        <option value="NIT Arunachal Pradesh">NIT Arunachal Pradesh</option>
+                                        <option value="NIT Delhi">NIT Delhi</option>
+                                        <option value="NIT Goa">NIT Goa</option>
+                                        <option value="NIT Manipur">NIT Manipur</option>
+                                        <option value="NIT Meghalaya">NIT Meghalaya</option>
+                                        <option value="NIT Mizoram">NIT Mizoram</option>
+                                        <option value="NIT Nagaland">NIT Nagaland</option>
+                                        <option value="NIT Puducherry">NIT Puducherry</option>
+                                        <option value="NIT Sikkim">NIT Sikkim</option>
+                                        <option value="NIT Uttarakhand">NIT Uttarakhand</option>
+                                        <option value="NIT Andhra Pradesh">NIT Andhra Pradesh</option> */}
                                     </select>
-
                                 </div>
+
                                 <button type="submit" class="m-0 btn btn-dark btn-icon-text">
                                     <div class="d-flex go">
                                         <p class="spacing">Lets go</p>

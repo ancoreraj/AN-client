@@ -106,9 +106,9 @@ const Dashboard = () => {
                 <h5 class="p-2 text-center header">Tutorial to get drive link</h5>
                 <div class="dashboard__video">
                   
-                  <video class="" controls>
+                  {/* <video class="" controls>
                     <source src="/videos/FileUpload.mp4" type="video/mp4"/>
-                  </video>
+                  </video> */}
                 </div>
                 </div>
                 <footer class="footer bg-white p-4 card">
