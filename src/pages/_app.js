@@ -7,7 +7,6 @@ import { ProSidebarProvider } from 'react-pro-sidebar';
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <ProSidebarProvider>
       <Head>
         <link rel="preconnect" href="https://fonts.gstatic.com"></link>
         <link
@@ -15,9 +14,10 @@ export default function App({ Component, pageProps }) {
           rel="stylesheet"></link>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></link>
       </Head>
-      <GoogleOAuthProvider clientId="717961017252-98974gkfqnr7c747rrodc7t2t1k5j1hh.apps.googleusercontent.com">
-        <Component {...pageProps} />
-      </GoogleOAuthProvider>
+      <ProSidebarProvider>
+        <GoogleOAuthProvider clientId="717961017252-98974gkfqnr7c747rrodc7t2t1k5j1hh.apps.googleusercontent.com">
+          <Component {...pageProps} />
+        </GoogleOAuthProvider>
       </ProSidebarProvider>
     </>
   )

@@ -1,7 +1,8 @@
 import Navbar from "../../component/NavBar";
-import NavBar from "../../component/NavBar";
 import SideNavbar from "../../component/SideNavbar";
-export default function Dashboard() {
+
+
+const Dashboard = () => {
     return (
         <>
             <Navbar/>
@@ -120,3 +121,5 @@ export default function Dashboard() {
         </>
     )
 }
+
+export default Dashboard;
