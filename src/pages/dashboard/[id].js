@@ -1,5 +1,5 @@
-import NavBar from "../../../component/NavBar";
-import SideNavbar from "../../../component/SideNavbar";
+import NavBar from "../../Components/NavBar";
+import SideNavbar from "../../Components/SideNavbar";
 
 const Files = () => {
     
@@ -15,7 +15,7 @@ const Files = () => {
         </div>
         <div class="card box-shadow-2 formBox">
                 <form action="/dashboard/search/<%= year %>/<%= branch %>" method="POST" class="d-flex">
-                  <input type="text" class="form-control mr-2" id="exampleFormControlInput1"
+                  <input type="text" class="form-control marginRight1" id="exampleFormControlInput1"
                     placeholder="Search for your notes (enter minimum 3 letters to get better results)"
                     name="searchQuery" autocomplete="off" required formInput/>
                   <button type="submit" class="btn btn-secondary formButton">Search</button>
