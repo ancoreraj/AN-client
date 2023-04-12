@@ -1,28 +1,58 @@
-import NavBar from "@/Components/nav";
-import GoogleLogin from "@/actions/auth";
+import NavBar from "../components/nav";
+import { GoogleLogin } from "./../actions/auth";
 import { useGoogleLogin } from "@react-oauth/google";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
+import { Toaster, toast } from "react-hot-toast";
 
-export default function Home() {
+const Home = () => {
   const router = useRouter();
-  const handleGoogleLoginSuccess = async (tokenResponse) => {
+  const [check, setCheck] = useState(false);
+  const [click,setClick]=useState(false);
 
+  const handleGoogleLoginSuccess = async (tokenResponse) => {
     const accessToken = tokenResponse.access_token;
+    setClick(true);
     const loginData = await GoogleLogin(accessToken)
     if (loginData) {
-      router.push("/dashboard")
+      toast.success("Login Successfull")
+      localStorage.setItem("token", loginData.token)
+      localStorage.setItem("user", JSON.stringify(loginData.user))
+      if (loginData.user.collegeName) {
+        router.push(`/dashboard/${loginData.user.collegeName}`)
+        return;
+      }
+      else if (!loginData.user.collegeName) {
+        router.push("/collegeinput")
+        return;
+      }
     }
-    else {
-      router.push("/collegeinput")
-    }
+    setClick(false);
   }
-  const handleLogin = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess });
 
+  const handleLogin = useGoogleLogin({ onSuccess: handleGoogleLoginSuccess, onError: (err) => toast.error(err) });
+
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      const { collegeName } = JSON.parse(localStorage.getItem("user"))
+      console.log(collegeName)
+      if (collegeName) {
+        router.push(`/dashboard/${collegeName}`)
+      }
+      else {
+        router.push("/collegeinput")
+      }
+    }
+    setCheck(true);
+  }, [])
+  if (!check) {
+    return <div></div>;
+  }
   return (
     <div className="landing">
-      <header>
+      <header >
         <NavBar />
 
         <div class="container">
@@ -34,11 +64,12 @@ export default function Home() {
 
             <div class="row lp__bodyLogin">
               <div class="col-md-3">
-                <a class="btn btn-outline-dark" onClick={handleLogin} role="button" style={{ texttransform: "none" }}>
+                <button disabled={click} class="btn btn-outline-dark" onClick={handleLogin} role="button" style={{ texttransform: "none" }}>
                   <img width="20px" style={{ marginBottom: "3px", marginRight: "5px" }} alt="Google sign-in"
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
                   Login with Google
-                </a>
+                </button>
+                <Toaster />
               </div>
 
             </div>
@@ -47,7 +78,9 @@ export default function Home() {
 
 
 
-      </header>
-    </div>
+      </header >
+    </div >
+
   )
 }
+export default Home

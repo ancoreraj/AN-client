@@ -1,16 +1,35 @@
-import NavBar from "@/Components/nav";
+import { collegeInput } from "@/actions/auth";
+import NavBar from "@/components/nav";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
 
 const CollegeInput = () => {
     const router = useRouter();
-
-    const collegeSelect = (college) => {
-        if (college == "what") {
-            alert("Please Select a College")
+    const [check, setCheck] = useState(false);
+    const collegeSelect = async(collegeName) => {
+        if (collegeName == "what") {
+            toast.error("Please select your college",{
+                style: {
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                  },
+            })
         }
         else {
-            router.push("/dashboard")
+            setCheck(true);
+            const college=await collegeInput(collegeName)
+            if (college) {
+                toast.success("College Added Successfully")
+                const user=JSON.parse(localStorage.getItem("user"))
+                user.collegeName=collegeName
+                localStorage.setItem("user",JSON.stringify(user))
+                router.push(`/dashboard/${user.collegeName}`)
+            }
+            setCheck(false);
+
         }
     }
 
@@ -36,13 +55,13 @@ const CollegeInput = () => {
                                         onchange='this.size=1; this.blur();' class="form-control collegeSelect" name="college" required >
 
                                         <option disabled value="what" selected hidden>Whats your College?</option>
-                                        <option value="NIT Agartala">NIT Agartala</option>
-                                        <option value="NIT Allahabad">NIT Allahabad</option>
-                                        <option value="NIT Bhopal">NIT Bhopal</option>
-                                        <option value="NIT Nagpur">NIT Nagpur</option>
-                                        <option value="NIT Durgapur">NIT Durgapur</option>
-                                        <option value="NIT Hamirpur">NIT Hamirpur</option>
-                                        <option value="NIT Jaipur">NIT Jaipur</option>
+                                        <option value="NIT-Agartala">NIT Agartala</option>
+                                        <option value="NIT-Allahabad">NIT Allahabad</option>
+                                        <option value="NIT-Bhopal">NIT Bhopal</option>
+                                        <option value="NIT-Nagpur">NIT Nagpur</option>
+                                        <option value="NIT-Durgapur">NIT Durgapur</option>
+                                        <option value="NIT-Hamirpur">NIT Hamirpur</option>
+                                        <option value="NIT-Jaipur">NIT Jaipur</option>
                                         {/* <option value="NIT Jalandhar">NIT Jalandhar</option>
                                         <option value="NIT Jamshedpur">NIT Jamshedpur</option>
                                         <option value="NIT Kurukshetra">NIT Kurukshetra</option>
@@ -69,7 +88,7 @@ const CollegeInput = () => {
                                     </select>
                                 </div>
 
-                                <button type="submit" class="m-0 btn btn-dark btn-icon-text">
+                                <button disabled={check} type="submit" class="m-0 btn btn-dark btn-icon-text">
                                     <div class="d-flex go">
                                         <p class="spacing">Lets go</p>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-fire" viewBox="0 0 16 16">
@@ -77,14 +96,10 @@ const CollegeInput = () => {
                                         </svg>
                                     </div>
                                 </button>
+                                <Toaster/>
                             </form>
 
                         </div>
-
-
-
-
-
                     </div>
                 </div>
             </header>
