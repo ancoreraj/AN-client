@@ -1,4 +1,4 @@
-import NavBar from "../components/nav";
+import NavBar from "../Components/nav";
 import { GoogleLogin } from "./../actions/auth";
 import { useGoogleLogin } from "@react-oauth/google";
 import Link from "next/link";
