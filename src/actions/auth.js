@@ -27,12 +27,14 @@ export const collegeInput = async (collegeName) => {
     }
 }
 
-export const topContributors = async (collegeName) => {
+export const topContributor = async (collegeName) => {
     try {
-        const { data } = await axios.get(`${BASE_URL}/topContributors?collegeName=${collegeName}`)
+        const { data } = await axios.post(`${BASE_URL}/top`,{
+            collegeName:collegeName
+        })
         return data;
     } catch (err) {
-        toast.error(err.response.data.message)
+        toast.error(err)
     }
 }
 
@@ -41,6 +43,25 @@ export const getAllColleges = async () => {
         const { data } = await axios.get(`${BASE_URL}/Colleges`)
         return data;
     } catch (err) {
+        toast.error(err.response.data.message)
+    }
+}
+
+export const uploadNotes = async (driveUrl, title, year, branch) => {
+    try {
+        const { data } = await axios.post(`${BASE_URL}/uploadNotes`, {
+            driveUrl: driveUrl,
+            title: title,
+            year: year,
+            branch: branch
+        }, {
+            headers: {
+                authorization: `Token ${localStorage.getItem("token")}`
+            }
+        })
+        return data;
+    } catch (err) {
+        console.log(err)
         toast.error(err.response.data.message)
     }
 }

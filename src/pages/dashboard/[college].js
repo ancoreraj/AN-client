@@ -1,79 +1,169 @@
 import { useRouter } from "next/router";
 import MainNavbar from "../../components/NavBar";
 import SideNavbar from "../../components/SideNavbar";
-import { getAllColleges, topContributors } from "@/actions/auth";
+import { getAllColleges, topContributor, topContributors, uploadNotes } from "@/actions/auth";
+import { Toaster, toast } from "react-hot-toast";
+import Link from "next/link";
+import { useDropzone } from "react-dropzone";
+import { useCallback, useEffect, useState } from "react";
+import axios from "axios";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { storage } from "@/firebase/firebase";
 
-export const getStaticPaths = async () => {
-    const res = await getAllColleges();
-    const paths = res.colleges.map(college => {
-        return {
-            params: {
-                college: college.collegeName
-            }
+
+const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL;
+// export const getStaticPaths = async () => {
+//     const res = await getAllColleges();
+//     const paths = res.colleges.map(college => {
+//         return {
+//             params: {
+//                 college: college.collegeName
+//             }
+//         }
+//     })
+
+//     return {
+//         paths,
+//         fallback: false
+//     }
+// }
+
+// export const getStaticProps = async (context) => {
+
+//     const collegeName = context.params.college;
+//     const res = await topContributors(collegeName);
+
+//     return {
+//         props: { college: res }
+//     }
+// }
+
+const Dashboard = () => {
+    const router = useRouter();
+    const [file, setFile] = useState(null);
+    const [collegeData, setCollegeData] = useState([]);
+    const [buttondisabled, setButtondisabled] = useState(false);
+    const [progresspercent, setProgresspercent] = useState(0);
+
+    const { college } = router.query;
+
+    useEffect(() => {
+        if(!college) return;
+
+        const fetchContributors = async () => {
+            const {collegeDetails} = await topContributor(college)
+            setCollegeData(collegeDetails.topPerformer)
         }
+        fetchContributors();
+    }, [college])
+    const onDrop = useCallback(acceptedFiles => {
+        const file = acceptedFiles[0];
+        if (file.size >= 20 * 1000000) {
+            toast.error("Please upload file of size less than 20 MB");
+        } else {
+            setFile(acceptedFiles[0])
+        }
+    }, []);
+    const { getRootProps, getInputProps } = useDropzone({
+        accept: {
+            "application/pdf": [".pdf"]
+        }, maxFiles: 1, onDrop
     })
+    const uploadFile = async (title, year, branch, e) => {
+        setButtondisabled(true)
+        if (!file) {
+            toast.error("Please select a file")
+            return;
+        }
+        const email = JSON.parse(localStorage.getItem("user")).emailId
+        try {
+            const storageRef = ref(storage, `pdfs/${email}/${file.name}`);
+            const uploadTask = uploadBytesResumable(storageRef, file);
+            uploadTask.on("state_changed",
+                (snapshot) => {
+                    const progress =
+                        Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                    setProgresspercent(progress);
+                },
+                (error) => {
+                    toast.error(error.message)
+                },
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                        try {
+                            const { data } = await axios.post(`${BASE_URL}/uploadNotes`, {
+                                driveUrl: downloadURL,
+                                title: title,
+                                year: year,
+                                branch: branch
+                            }, {
+                                headers: {
+                                    authorization: `Token ${localStorage.getItem("token")}`
+                                }
+                            })
+                            toast.success("File uploaded successfully")
+                            e.target.reset();
+                            setFile(null);
+                            const {collegeDetails}=await topContributor(college);
+                            setCollegeData(collegeDetails.topPerformer)
+                            setButtondisabled(false)
+                        }
+                        catch (err) {
+                            setButtondisabled(false);
+                            toast.error(err.message)
+                        }
+                    });
+                }
+            );
 
-    return {
-        paths,
-        fallback: false
+        } catch (err) {
+            setButtondisabled(false)
+            console.log(err)
+        }
+        // const res = await uploadNotes(driveUrl, title, year, branch)
     }
-}
-
-export const getStaticProps = async (context) => {
-    const collegeName = context.params.college;
-    const res = await topContributors(collegeName);
-
-    return {
-        props: { college: res }
-    }
-}
-
-const Dashboard = ({ college: { college } }) => {
-
     return (
         <>
             <MainNavbar />
+            {console.log(collegeData)}
             <div className="dashboard">
                 <SideNavbar />
                 <div className="card dashboard-container box-shadow-1">
                     <div className="welcomeMessage">
-                        <h1>Welcome to {college?.collegeName.replace("-", " ")}</h1>
+                        <h1>Welcome to {college?.replace("-", " ")}</h1>
                         <p> To share and download your pdfs and notes, navigate to navbar.</p>
                     </div>
-                    {college?.topPerformer.length > 0 && (
+                    {collegeData?.length > 0 && (
                         <div className=" card topContributors box-shadow-2">
                             <div className="header">
                                 Top Contributors
                             </div>
                             <table class="table table-bordered">
                                 <tbody>
-                                    {college?.topPerformer.map((user, index) => {
+                                    {collegeData?.map((user, index) => {
                                         return (
                                             <tr>
-                                                <th scope="row">{index+1}</th>
-                                                <td><a className="link">{user.name}</a></td>
-                                                <td>49 Uploads</td>
+                                                <th scope="row">{index + 1}</th>
+                                                <td><Link href={`/profile/${user._id}`}><div className="link">{user.displayName}</div></Link></td>
+                                                <td>{user.pdfs.length} Uploads</td>
                                             </tr>
                                         )
                                     })}
-                        </tbody>
+                                </tbody>
                             </table>
                         </div>)
                     }
-
                     <div className="card uploadNotesForm">
                         <div id="form" data-aos="zoom-in-up" class="card box-shadow-2">
                             <h4 class="p-2 text-center header">Share your notes below</h4>
                             <div class="p-3">
-                                <form id="uploadForm" name="my-form" class="forms-sample" action="/dashboard/uploadfile"
-                                    method="POST">
+                                <form id="uploadForm" name="my-form" class="forms-sample" onSubmit={(e) => {
+                                    e.preventDefault();
+                                    uploadFile(e.target.title.value, e.target.year.value, e.target.branch.value, e);
+                                }}>
                                     <div class="form-group">
                                         <input type="text" name="title" class="form-control inputStretch" id="exampleInputUsername1"
                                             placeholder="Enter a suitable title for your upload." autocomplete="off" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="driveUrl" class="form-control inputStretch" id="exampleInputEmail1"
-                                            placeholder="Google Drive Shareable link" autocomplete="off" required />
                                     </div>
                                     <div class="d-flex">
                                         <div class="form-group w-100 marginRight1">
@@ -105,11 +195,29 @@ const Dashboard = ({ college: { college } }) => {
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="choose-file">
+
+                                        <label for="file-upload">
+                                            <div {...getRootProps()}>
+                                                <input {...getInputProps()} />
+                                                {file ?
+                                                    <div className="uploadText">{file?.name}</div>
+                                                    :
+                                                    <>
+                                                        <div className="uploadText mb-1">Upload your notes here.</div>
+                                                        <div className="uploadText" >File type should be pdf and file size should be less than 20MB</div>
+                                                    </>
+                                                }
+
+                                            </div>
+                                        </label>
+                                    </div>
                                     <div class="card uploadButton">
-                                        <button id="pop-btn" type="submit" class="btn btn-danger btn-icon-text">
+                                        <button disabled={buttondisabled} id="pop-btn" type="submit" class="btn btn-danger btn-icon-text">
                                             <i class="mdi mdi-upload btn-icon-prepend"></i>
-                                            Upload your file
+                                            {progresspercent > 0 && progresspercent < 100 ? `Uploading ${progresspercent}%` : "Click here to upload"}
                                         </button>
+                                        <Toaster />
                                     </div>
                                 </form>
                             </div>

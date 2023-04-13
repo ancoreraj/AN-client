@@ -15,12 +15,12 @@ const NavBar = () => {
                 <div class={`navbar-collapse navPos collapse`} id="collapsibleNavId">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item">
-                            <Link href="/" className="">
+                            <Link href="/" className="nav_link">
                             <div class="nav-link navbarText" >Home</div>
                             </Link>
                         </li>
-                        <li class="nav-item">
-                        <Link href="/about">
+                        <li class="nav-item" >
+                        <Link href="/about" className="nav_link">
                             <div class="nav-link navbarText">About</div>
                             </Link>
                         </li>
