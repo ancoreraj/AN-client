@@ -1,11 +1,11 @@
-import NavBar from "../../Components/NavBar";
-import SideNavbar from "../../Components/SideNavbar";
+import MainNavbar from "../../../components/NavBar";
+import SideNavbar from "../../../components/SideNavbar";
 
 const Files = () => {
     
     return ( 
         <>
-        <NavBar/>
+        <MainNavbar/>
         <div className="dashboard">
         <SideNavbar/>
         <div className="card dashboard-container">

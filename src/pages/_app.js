@@ -5,6 +5,10 @@ import { GoogleOAuthProvider } from "@react-oauth/google"
 import { ProSidebarProvider } from 'react-pro-sidebar';
 
 export default function App({ Component, pageProps }) {
+  const onRouteChange = () => {
+    console.log('Route changed');
+  }
+
   return (
     <>
       <Head>
