@@ -78,6 +78,9 @@
     .lp__bodyLogin p {
         margin: 0px;
     }
+    .nav_link{
+        text-decoration: none;
+    }
 
     @media only screen and (max-width:900px) {
         .lp__body {
@@ -103,7 +106,7 @@
         }
 
         .logo__a {
-            width: 70%;
+            width: 30%;
 
         }
 

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {useProSidebar} from 'react-pro-sidebar'
 
 
-const Navbar = () => {
+const MainNavbar = () => {
 
     const { collapseSidebar,broken } = useProSidebar();
     const [toggleProfile,setToggleProfile] = useState(false);
@@ -85,4 +85,4 @@ const Navbar = () => {
      );
 }
  
-export default Navbar;
+export default MainNavbar;
