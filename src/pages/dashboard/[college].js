@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import MainNavbar from "../../components/NavBar";
-import SideNavbar from "../../components/SideNavbar";
+import MainNavbar from "../../Components/NavBar";
+import SideNavbar from "../../Components/SideNavbar";
 import { getAllColleges, topContributor, topContributors, uploadNotes } from "@/actions/auth";
 import { Toaster, toast } from "react-hot-toast";
 import Link from "next/link";

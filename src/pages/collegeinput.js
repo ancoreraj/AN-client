@@ -1,5 +1,5 @@
 import { collegeInput } from "@/actions/auth";
-import NavBar from "@/components/nav";
+import NavBar from "@/Components/nav";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
