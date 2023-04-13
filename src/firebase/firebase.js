@@ -6,7 +6,7 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC7uJ0fJalOZ6AYkE8jU-anE2-uKGo6A_Y",
+  apiKey:process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: "ancorenotes-29b02.firebaseapp.com",
   projectId: "ancorenotes-29b02",
   storageBucket: "ancorenotes-29b02.appspot.com",

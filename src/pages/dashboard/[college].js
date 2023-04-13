@@ -12,31 +12,6 @@ import { storage } from "@/firebase/firebase";
 
 
 const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL;
-// export const getStaticPaths = async () => {
-//     const res = await getAllColleges();
-//     const paths = res.colleges.map(college => {
-//         return {
-//             params: {
-//                 college: college.collegeName
-//             }
-//         }
-//     })
-
-//     return {
-//         paths,
-//         fallback: false
-//     }
-// }
-
-// export const getStaticProps = async (context) => {
-
-//     const collegeName = context.params.college;
-//     const res = await topContributors(collegeName);
-
-//     return {
-//         props: { college: res }
-//     }
-// }
 
 const Dashboard = () => {
     const router = useRouter();
